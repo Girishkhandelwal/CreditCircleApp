@@ -15,4 +15,10 @@ export const GET_CITY_BY_PINCODE_ROUTE = `${apiRoute}/getPincode`;
 
 export const GET_OFFERS_ROUTE = `${apiRoute}/getFilterOffers`;
 
-    
+export const UPDATE_PROFILE_ROUTE = `${apiRoute}/udpateProfile`;
+
+export const GET_USER_ROUTE = `${apiRoute}/getUser`;
+
+
+
+

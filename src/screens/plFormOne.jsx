@@ -5,6 +5,27 @@ import { setFormData } from '../globalStates/dataSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { INSERT_LEAD_ROUTE } from '../utils/apiRoutes';
+import {
+    useFonts,
+    Poppins_100Thin,
+    Poppins_100Thin_Italic,
+    Poppins_200ExtraLight,
+    Poppins_200ExtraLight_Italic,
+    Poppins_300Light,
+    Poppins_300Light_Italic,
+    Poppins_400Regular,
+    Poppins_400Regular_Italic,
+    Poppins_500Medium,
+    Poppins_500Medium_Italic,
+    Poppins_600SemiBold,
+    Poppins_600SemiBold_Italic,
+    Poppins_700Bold,
+    Poppins_700Bold_Italic,
+    Poppins_800ExtraBold,
+    Poppins_800ExtraBold_Italic,
+    Poppins_900Black,
+    Poppins_900Black_Italic,
+} from '@expo-google-fonts/poppins';
 
 export default function PlFormOne({ navigation }) {
     const dispatch = useDispatch();
@@ -115,7 +136,30 @@ export default function PlFormOne({ navigation }) {
         return panRegex.test(pan);
     };
 
+    let [fontsLoaded] = useFonts({
+        Poppins_100Thin,
+        Poppins_100Thin_Italic,
+        Poppins_200ExtraLight,
+        Poppins_200ExtraLight_Italic,
+        Poppins_300Light,
+        Poppins_300Light_Italic,
+        Poppins_400Regular,
+        Poppins_400Regular_Italic,
+        Poppins_500Medium,
+        Poppins_500Medium_Italic,
+        Poppins_600SemiBold,
+        Poppins_600SemiBold_Italic,
+        Poppins_700Bold,
+        Poppins_700Bold_Italic,
+        Poppins_800ExtraBold,
+        Poppins_800ExtraBold_Italic,
+        Poppins_900Black,
+        Poppins_900Black_Italic,
+    });
 
+    if (!fontsLoaded) {
+        return <Text>Loading...</Text>;
+    }
 
 
     return (
@@ -147,8 +191,8 @@ export default function PlFormOne({ navigation }) {
                                 <Image className="w-6 h-6" source={require('../../assets/forms/dots.png')} />
                             </View>
 
-                            <Text className="text-xl px-5 font-bold text-blue-900">
-                                Enter Your Loan Amount And Details
+                            <Text className="text-xl px-5 text-blue-900" style={{ fontFamily: 'Poppins_400Regular' }}>
+                                Enter Your Loan Amount & Details
                             </Text>
 
                         </View>
@@ -209,14 +253,14 @@ export default function PlFormOne({ navigation }) {
                             </View>
 
                             <View className="mb-5">
-                                <Text className="text-lg font-bold text-gray-500 mb-2">
+                                <Text className="text-lg  text-gray-500 mb-2" style={{ fontFamily: 'Poppins_700Bold' }}>
                                     Select Gender
                                 </Text>
 
                                 <View className="flex-row justify-between items-center">
                                     <TouchableOpacity className={`rounded-3xl ${selectedGender == 1 ? 'py-1' : 'py-2'} px-3 border-[1px] border-gray-300 w-[32%]`} onPress={() => setSelectedGender(1)}>
                                         <View className="flex-row justify-between items-center">
-                                            <Text>
+                                            <Text style={{ fontFamily: 'Poppins_400Regular' }}>
                                                 Male
                                             </Text>
 
@@ -228,7 +272,7 @@ export default function PlFormOne({ navigation }) {
 
                                     <TouchableOpacity className={`rounded-3xl ${selectedGender == 2 ? 'py-1' : 'py-2'} px-3 border-[1px] border-gray-300 w-[32%]`} onPress={() => setSelectedGender(2)}>
                                         <View className="flex-row justify-between items-center">
-                                            <Text>
+                                            <Text style={{ fontFamily: 'Poppins_400Regular' }}>
                                                 Female
                                             </Text>
 
@@ -241,7 +285,7 @@ export default function PlFormOne({ navigation }) {
 
                                     <TouchableOpacity className={`rounded-3xl ${selectedGender == 3 ? 'py-1' : 'py-2'} px-3 border-[1px] border-gray-300 w-[32%]`} onPress={() => setSelectedGender(3)}>
                                         <View className="flex-row justify-between items-center">
-                                            <Text>
+                                            <Text style={{ fontFamily: 'Poppins_400Regular' }}>
                                                 Other
                                             </Text>
 
@@ -256,7 +300,7 @@ export default function PlFormOne({ navigation }) {
                             </View>
 
                             <View className="mb-5">
-                                <Text className="text-lg font-bold text-gray-500 mb-3">
+                                <Text className="text-lg  text-gray-500 mb-3" style={{ fontFamily: 'Poppins_700Bold' }}>
                                     Select Profession
                                 </Text>
 
@@ -264,7 +308,7 @@ export default function PlFormOne({ navigation }) {
 
                                     <TouchableOpacity className={`rounded-3xl ${selectedProfession == 1 ? 'py-1' : 'py-2'}  px-3 border-[1px] border-gray-300 w-[47%] `} onPress={() => setSelectedProfession(1)}>
                                         <View className="flex-row justify-between items-center">
-                                            <Text>
+                                            <Text style={{ fontFamily: 'Poppins_400Regular' }}>
                                                 Salaried
                                             </Text>
 
@@ -276,7 +320,7 @@ export default function PlFormOne({ navigation }) {
 
                                     <TouchableOpacity className={`rounded-3xl ${selectedProfession == 2 ? 'py-1' : 'py-2'}  px-3 border-[1px] border-gray-300 w-[47%] `} onPress={() => setSelectedProfession(2)}>
                                         <View className="flex-row justify-between items-center">
-                                            <Text>
+                                            <Text style={{ fontFamily: 'Poppins_400Regular' }}>
                                                 Student
                                             </Text>
 
@@ -289,7 +333,7 @@ export default function PlFormOne({ navigation }) {
 
                                     <TouchableOpacity className={`rounded-3xl ${selectedProfession == 3 ? 'py-1' : 'py-2'}  px-3 border-[1px] border-gray-300 w-[47%] `} onPress={() => setSelectedProfession(3)}>
                                         <View className="flex-row justify-between items-center">
-                                            <Text>
+                                            <Text style={{ fontFamily: 'Poppins_400Regular' }}>
                                                 Self Employed
                                             </Text>
 
@@ -301,7 +345,7 @@ export default function PlFormOne({ navigation }) {
 
                                     <TouchableOpacity className={`rounded-3xl ${selectedProfession == 4 ? 'py-1' : 'py-2'}  px-3 border-[1px] border-gray-300 w-[47%] `} onPress={() => setSelectedProfession(4)}>
                                         <View className="flex-row justify-between items-center">
-                                            <Text>
+                                            <Text style={{ fontFamily: 'Poppins_400Regular' }}>
                                                 Consultant
                                             </Text>
 
@@ -314,7 +358,7 @@ export default function PlFormOne({ navigation }) {
 
                                     <TouchableOpacity className={`rounded-3xl ${selectedProfession == 5 ? 'py-1' : 'py-2'}  px-3 border-[1px] border-gray-300 w-[47%] `} onPress={() => setSelectedProfession(5)}>
                                         <View className="flex-row justify-between items-center">
-                                            <Text>
+                                            <Text style={{ fontFamily: 'Poppins_400Regular' }}>
                                                 Freelancer
                                             </Text>
 
@@ -340,12 +384,12 @@ export default function PlFormOne({ navigation }) {
             </TouchableWithoutFeedback>
 
             <TouchableOpacity
-                className={`bg-orange-600 px-6 py-2 rounded-xl mx-5 ${Platform.OS == 'ios' && ''}`}
+                className={`bg-orange-600 px-6 py-2 rounded mx-5 ${Platform.OS == 'ios' && ''}`}
                 onPress={handelNext}
 
                 style={{ position: 'absolute', gap: 2, left: 0, right: 0, bottom: 10 }}
             >
-                <Text className="text-white text-center text-lg font-bold">
+                <Text className="text-white text-center text-lg " style={{ fontFamily: 'Poppins_400Regular' }}>
                     Next
                 </Text>
             </TouchableOpacity>

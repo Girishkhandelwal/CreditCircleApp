@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import SplashScreen from './SplashScreen';
 import CustomDrawerContent from './Drawer';
 import HomeScreen from '../../screens/home';
+import LoanOffersScreen from '../../screens/loanOffers';
 import OffersListScreen from '../../screens/offersList';
 import OfferScreen from '../../screens/offer';
 import PartnersScreen from '../../screens/partners';
@@ -53,12 +54,10 @@ function AppNavigator() {
               }}
             >
               <Drawer.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-              <Drawer.Screen name="OffersList" component={OffersListScreen} options={{ headerShown: false }} />
+              <Drawer.Screen name="LoanOffers" component={LoanOffersScreen} options={{ headerShown: false }} />
               <Drawer.Screen name="Offer" component={OfferScreen} options={{ headerShown: false }} />
               <Drawer.Screen name="Partners" component={PartnersScreen} options={{ headerShown: false }} />
-
               <Drawer.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
-
               <Drawer.Screen name="PlFormOne" component={PlFormOneScreen} options={{ headerShown: false }} />
               <Drawer.Screen name="PlFormTwo" component={PlFormTwoScreen} options={{ headerShown: false }} />
               <Drawer.Screen name="PlFormThree" component={PlFormThreeScreen} options={{ headerShown: false }} />
@@ -67,9 +66,10 @@ function AppNavigator() {
               <Drawer.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }} />
               <Drawer.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} options={{ headerShown: false }} />
               <Drawer.Screen name="Faq" component={FaqScreen} options={{ headerShown: false }} />
+              <Drawer.Screen name="OffersList" component={OffersListScreen} options={{ headerShown: false }} />
             </Drawer.Navigator>
-          ) : (
-            <Stack.Navigator initialRouteName="SignIn">
+         ) : ( 
+              <Stack.Navigator initialRouteName="SignIn">
               <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
               <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
               <Stack.Screen name="OtpScreen" component={OtpScreen} options={{ headerShown: false }} />
@@ -78,9 +78,9 @@ function AppNavigator() {
               <Drawer.Screen name="PlFormThree" component={PlFormThreeScreen} options={{ headerShown: false }} />
               <Drawer.Screen name="Thankyou" component={ThankyouScreen} options={{ headerShown: false }} />
 
-              {/* Add more screens for non-logged-in users if needed */}
+            
             </Stack.Navigator>
-          )}
+           )} 
         </>
       ) : (
         <SplashScreen />

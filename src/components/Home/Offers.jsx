@@ -3,7 +3,8 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { setFormData, setScreenName } from '../../globalStates/dataSlice';
 
-export default function Offers({ navigation }) {
+
+export default function Offers({ navigation,  }) {
     // Define an array of offerings
     const offerings = [
         { title: 'Personal Loans', screen: 'PlFormOne', icon: <Image className="h-8 w-8" source={require('../../../assets/Home/offer/img (3).png')} /> },
@@ -41,7 +42,7 @@ export default function Offers({ navigation }) {
 
                                 {offering.icon}
 
-                                <Text className="font-bold text-[11px]">
+                                <Text className=" text-[11px]" style={{  fontFamily: 'OpenSans_400Regular' }}>
                                     {offering.title}
                                 </Text>
 

@@ -11,7 +11,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsLogin, setUserDetails } from '../globalStates/dataSlice';
 import { LOGIN_ROUTE } from '../utils/apiRoutes';
 import axios from 'axios';
-
+import {
+    useFonts,
+    Poppins_100Thin,
+    Poppins_100Thin_Italic,
+    Poppins_200ExtraLight,
+    Poppins_200ExtraLight_Italic,
+    Poppins_300Light,
+    Poppins_300Light_Italic,
+    Poppins_400Regular,
+    Poppins_400Regular_Italic,
+    Poppins_500Medium,
+    Poppins_500Medium_Italic,
+    Poppins_600SemiBold,
+    Poppins_600SemiBold_Italic,
+    Poppins_700Bold,
+    Poppins_700Bold_Italic,
+    Poppins_800ExtraBold,
+    Poppins_800ExtraBold_Italic,
+    Poppins_900Black,
+    Poppins_900Black_Italic,
+} from '@expo-google-fonts/poppins';
 
 const CELL_COUNT = 6;
 const OTP_EXPIRY_TIME = 29
@@ -120,6 +140,32 @@ export default function SignIn({ navigation }) {
 
     },[value])
 
+
+    let [fontsLoaded] = useFonts({
+        Poppins_100Thin,
+        Poppins_100Thin_Italic,
+        Poppins_200ExtraLight,
+        Poppins_200ExtraLight_Italic,
+        Poppins_300Light,
+        Poppins_300Light_Italic,
+        Poppins_400Regular,
+        Poppins_400Regular_Italic,
+        Poppins_500Medium,
+        Poppins_500Medium_Italic,
+        Poppins_600SemiBold,
+        Poppins_600SemiBold_Italic,
+        Poppins_700Bold,
+        Poppins_700Bold_Italic,
+        Poppins_800ExtraBold,
+        Poppins_800ExtraBold_Italic,
+        Poppins_900Black,
+        Poppins_900Black_Italic,
+    });
+
+    if (!fontsLoaded) {
+        return <Text>Loading...</Text>;
+    }
+
    
 
 
@@ -147,32 +193,32 @@ export default function SignIn({ navigation }) {
 
                         <View className="mb-5">
 
-                            <Text className="text-3xl  mb-2">
-                                Verification!
+                            <Text className="text-4xl  mb-2" style={{ fontFamily: 'Poppins_300Light' }} >
+                                Verification
                             </Text>
 
                         </View>
 
                         <View className="mb-10 ">
-                            <Text className="text-[15px] mb-1 text-gray-400">
+                            <Text className="text-[15px] mb-1 text-gray-400" style={{ fontFamily: 'Poppins_400Regular' }}>
                                 Login in to our platform
                             </Text>
 
-                            <Text className="text-xl font-semibold text-blue-900">
+                            <Text className="text-xl font-semibold text-blue-900" style={{ fontFamily: 'Poppins_400Regular' }}>
                                 Please enter the OTP
                             </Text>
                         </View>
 
                         <View className="">
 
-                            <Text className="text-gray-400 mb-5 ">
-                                Please Enter The OTP Here
+                            <Text className="text-gray-400 mb-5 " style={{ fontFamily: 'Poppins_400Regular' }}>
+                                Please enter the OTP here
                             </Text>
 
                             {error && value.length == 6 &&
                                 <View className="">
 
-                                    <Text className="text-red-500">
+                                    <Text className="text-red-500" style={{ fontFamily: 'Poppins_400Regular' }}>
                                         OTP Invalid
                                     </Text>
 
@@ -206,13 +252,13 @@ export default function SignIn({ navigation }) {
                             <View className="flex-row justify-between items-center mt-5 ">
 
                                 <Text>
-                                    <Text>Timer: {timer} second</Text>
+                                    <Text>00:{timer} </Text>
                                 </Text>
 
-                                <TouchableOpacity className={`p-2 ${isResendDisabled ? 'bg-orange-400' : 'bg-orange-600'}  rounded-lg`} disabled={isResendDisabled} onPress={handleResend}>
+                                <TouchableOpacity className={`p-2  rounded-lg`} disabled={isResendDisabled} onPress={handleResend}>
 
-                                    <Text className=" text-white">
-                                        Resend
+                                    <Text className={`${isResendDisabled ? 'text-orange-400' : 'text-orange-600'}`} style={{ fontFamily: 'Poppins_400Regular' }}>
+                                        RESEND OTP
                                     </Text>
 
                                 </TouchableOpacity>
@@ -230,8 +276,8 @@ export default function SignIn({ navigation }) {
                     <View>
 
                         <TouchableOpacity className="bg-orange-600  px-6 py-3 rounded-xl mb-5 w-[90%] flex-row justify-center m-auto" onPress={handelVerify}>
-                            <Text className="text-white text-center text-lg font-bold">
-                                Submit
+                            <Text className="text-white text-center text-lg font-bold" style={{ fontFamily: 'Poppins_400Regular' }}>
+                                LOGIN
                             </Text>
                         </TouchableOpacity>
 
@@ -239,13 +285,13 @@ export default function SignIn({ navigation }) {
 
                     <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
 
-                        <Text className="text-lg ">
-                            already have an account
+                        <Text className="text-lg text-gray-400" style={{ fontFamily: 'Poppins_400Regular' }}>
+                            don't have an account
                         </Text>
 
-                        <TouchableOpacity onPress={() => navigation.navigate('SignIn')} className="mx-2">
-                            <Text className="text-lg font-bold text-orange-600 ">
-                                Sign in
+                        <TouchableOpacity onPress={() => navigation.navigate('SignUp')} className="mx-2">
+                            <Text className="text-lg text-orange-600 " style={{ fontFamily: 'Poppins_400Regular' }}>
+                                Signup
                             </Text>
                         </TouchableOpacity>
 

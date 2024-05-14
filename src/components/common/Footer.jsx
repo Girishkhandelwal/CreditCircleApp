@@ -5,6 +5,21 @@ import { useNavigation } from '@react-navigation/native';
 import { HomeIcon, OfferListIcon, PlusIcon, ProfileIcon, SearchIcon } from '../../../assets/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { setScreenName } from '../../globalStates/dataSlice';
+import {
+  useFonts,
+  OpenSans_300Light,
+  OpenSans_400Regular,
+  OpenSans_500Medium,
+  OpenSans_600SemiBold,
+  OpenSans_700Bold,
+  OpenSans_800ExtraBold,
+  OpenSans_300Light_Italic,
+  OpenSans_400Regular_Italic,
+  OpenSans_500Medium_Italic,
+  OpenSans_600SemiBold_Italic,
+  OpenSans_700Bold_Italic,
+  OpenSans_800ExtraBold_Italic,
+} from '@expo-google-fonts/open-sans';
 
 
 export default function Footer() {
@@ -12,7 +27,25 @@ export default function Footer() {
   const dispatch = useDispatch()
 
   const screenName = useSelector((state)=> state.data.screenName)
+  
+  let [fontsLoaded] = useFonts({
+    OpenSans_300Light,
+    OpenSans_400Regular,
+    OpenSans_500Medium,
+    OpenSans_600SemiBold,
+    OpenSans_700Bold,
+    OpenSans_800ExtraBold,
+    OpenSans_300Light_Italic,
+    OpenSans_400Regular_Italic,
+    OpenSans_500Medium_Italic,
+    OpenSans_600SemiBold_Italic,
+    OpenSans_700Bold_Italic,
+    OpenSans_800ExtraBold_Italic,
+  });
 
+  if (!fontsLoaded) {
+    return <Text>Loading..</Text>
+  } 
 
   return (
     <View className={` bg-[#222C7A] ${Platform.OS == 'android' ? 'p-1' : 'p-3'}`}
@@ -37,28 +70,28 @@ export default function Footer() {
           className="mb-1"
 
         >
-          <HomeIcon />
+          <HomeIcon color={screenName == 'Home' ? 'orange' : 'white'}/>
 
         </View>
 
-        <Text className={`${screenName == 'Home' ? 'text-orange-600' : 'text-gray-500'} `}>Home</Text>
+        <Text className={`${screenName == 'Home' ? 'text-orange-600' : 'text-white'}  `} style={{  fontFamily: 'OpenSans_400Regular' }}>Home</Text>
 
       </TouchableOpacity>
 
       <TouchableOpacity className="w-[23%] flex-col items-center mr-5" onPress={() => {
-        // dispatch(setScreenName('Home'))
-        // navigation.navigate('Home')
+        dispatch(setScreenName('OffersList'))
+        navigation.navigate('OffersList')
       }}>
 
         <View
           className="mb-1"
 
         >
-          <SearchIcon />
+          <SearchIcon color={screenName == 'OffersList' ? 'orange' : 'white'}/>
 
         </View>
 
-        <Text className={`${screenName == 'Search' ? 'text-orange-600' : 'text-gray-500'} `}>Search</Text>
+        <Text className={`${screenName == 'OffersList' ? 'text-orange-600' : 'text-white'}  `} style={{  fontFamily: 'OpenSans_400Regular' }}>Search</Text>
 
       </TouchableOpacity>
 
@@ -79,17 +112,18 @@ export default function Footer() {
           dispatch(setScreenName('OffersList'))
           navigation.navigate('OffersList')
         }}
+
       >
 
         <View
           className=" mb-1  "
 
         >
-          <OfferListIcon />
+          <OfferListIcon color={screenName == 'OffersList' ? 'orange' : 'white'}/>
 
         </View>
 
-        <Text className={`${screenName == 'OffersList' ? 'text-orange-600' : 'text-gray-500'} `}>Offer List</Text>
+        <Text className={`${screenName == 'OffersList' ? 'text-orange-600' : 'text-white'}  `} style={{  fontFamily: 'OpenSans_400Regular' }}>Offer List</Text>
 
       </TouchableOpacity>
 
@@ -105,14 +139,13 @@ export default function Footer() {
           className=" mb-1  "
 
         >
-          <ProfileIcon />
+          <ProfileIcon  color={screenName == 'ProfileScreen' ? 'orange' : 'white'}/>
 
         </View>
 
-        <Text className={`${screenName == 'ProfileScreen' ? 'text-orange-600' : 'text-gray-500'} `}>Profile</Text>
+        <Text className={`${screenName == 'ProfileScreen' ? 'text-orange-600' : 'text-white'}  `} style={{  fontFamily: 'OpenSans_400Regular' }}>Profile</Text>
 
       </TouchableOpacity>
-
 
     </View>
 

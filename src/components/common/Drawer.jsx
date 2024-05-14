@@ -5,6 +5,9 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsLogin, setScreenName, setUserDetails } from '../../globalStates/dataSlice';
 import { Avatar } from 'react-native-paper';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { GET_USER_ROUTE } from '../../utils/apiRoutes';
 
 export default function CustomDrawerContent({ ...props }) {
 
@@ -18,13 +21,40 @@ export default function CustomDrawerContent({ ...props }) {
         dispatch(setIsLogin(false))
         navigation.navigate('SignIn')
 
-
     }
+
+    useEffect(()=>{
+
+        if (userDetails.mobile && !userDetails.Email ) {
+            
+            axios.post(GET_USER_ROUTE, {MobileNumber: userDetails.mobile}).then((res)=>{
+    
+                const {Email, FirstName, LastName, Pancard} = res.data[0]
+
+                dispatch(setUserDetails({
+                    ...userDetails,
+                    Email,
+                    FirstName,
+                    LastName,
+                    Pancard
+                }))
+
+            }).catch((error) => {
+
+                if (error.response && error.response.data && error.response.data.error) {
+                    console.log("Error:", error.response.data.error);
+                } else {
+                    console.log("Unknown Error");
+                }
+            })
+        }
+
+    },[userDetails])
 
     return (
         <>
 
-            <DrawerContentScrollView className="h-screen" {...props}>
+            <DrawerContentScrollView className="h-screen " style={{zIndex: -99}} {...props}>
 
                 <View >
 
@@ -56,7 +86,7 @@ export default function CustomDrawerContent({ ...props }) {
                         <TouchableOpacity className={`${screenName == 'Home' && 'bg-[#222C7A]'} p-5 flex-row items-center justify-between gap-x-3`} onPress={() => { dispatch(setScreenName('Home')); navigation.navigate('Home') }}>
 
                             <View className="flex-row items-center ">
-                                <HomeIcon />
+                                {/* <HomeIcon /> */}
 
                                 <Text className={`${screenName == 'Home' ? 'text-white' : 'text-gray-500'} font-semibold mx-2`}>
                                     Home
@@ -72,7 +102,7 @@ export default function CustomDrawerContent({ ...props }) {
 
                         <TouchableOpacity className={`${screenName == 'EMICalculator' && 'bg-[#222C7A]'}  p-5 flex-row items-center justify-between gap-x-3`} onPress={() => { dispatch(setScreenName('EMICalculator')); navigation.navigate('EMICalculator') }}>
                             <View className="flex-row items-center ">
-                                <CalculatorIcon />
+                                {/* <CalculatorIcon /> */}
                                 <Text className={`${screenName == 'EMICalculator' ? 'text-white' : 'text-gray-500'} font-semibold mx-2`}>
                                     EMI Calculator
                                 </Text>
@@ -87,7 +117,7 @@ export default function CustomDrawerContent({ ...props }) {
 
                         <TouchableOpacity className={`${screenName == 'Faq' && 'bg-[#222C7A]'}  p-5 flex-row items-center justify-between gap-x-3`} onPress={() => { dispatch(setScreenName('Faq')); navigation.navigate('Faq') }}>
                             <View className="flex-row items-center ">
-                                <FaqIcon />
+                                {/* <FaqIcon /> */}
                                 <Text className={`${screenName == 'Faq' ? 'text-white' : 'text-gray-500'} font-semibold mx-2`}>
                                     FAQ
                                 </Text>
@@ -101,12 +131,10 @@ export default function CustomDrawerContent({ ...props }) {
                         <Image className="w-[90%] m-auto" source={require('../../../.../../assets/Home/offer/Line.png')} />
 
 
-
-
                         <TouchableOpacity className={`${screenName == 'PrivacyPolicy' && 'bg-[#222C7A]'} p-5 flex-row items-center justify-between gap-x-3`} onPress={() => { dispatch(setScreenName('PrivacyPolicy')); navigation.navigate('PrivacyPolicy') }}>
 
                             <View className="flex-row items-center ">
-                                <PPCicon />
+                                {/* <PPCicon /> */}
                                 <Text className={`${screenName == 'PrivacyPolicy' ? 'text-white' : 'text-gray-500'} font-semibold mx-2`}>
                                     Privacy Policy
                                 </Text>

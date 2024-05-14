@@ -1,10 +1,25 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, Platform } from 'react-native'
 import { useEffect, useState } from 'react'
 import { BackIcon } from '../../assets/Header'
 import DashedLine from 'react-native-dashed-line'
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import Header from '../components/Home/Header';
 import Footer from '../components/common/Footer';
+import {
+    useFonts,
+    OpenSans_300Light,
+    OpenSans_400Regular,
+    OpenSans_500Medium,
+    OpenSans_600SemiBold,
+    OpenSans_700Bold,
+    OpenSans_800ExtraBold,
+    OpenSans_300Light_Italic,
+    OpenSans_400Regular_Italic,
+    OpenSans_500Medium_Italic,
+    OpenSans_600SemiBold_Italic,
+    OpenSans_700Bold_Italic,
+    OpenSans_800ExtraBold_Italic,
+} from '@expo-google-fonts/open-sans';
 
 
 export default function EmiCalculator({ navigation }) {
@@ -31,11 +46,11 @@ export default function EmiCalculator({ navigation }) {
         setPrincipalAmount(principal.toFixed(2));
     };
 
-    useEffect(()=>{
-         
+    useEffect(() => {
+
         calculateEmi()
 
-    },[])
+    }, [])
 
     // Function to handle loan amount slider change
     const handleLoanAmountChange = (values) => {
@@ -54,6 +69,27 @@ export default function EmiCalculator({ navigation }) {
         setInterestRate(values[0]);
         calculateEmi();
     };
+
+    let [fontsLoaded] = useFonts({
+        OpenSans_300Light,
+        OpenSans_400Regular,
+        OpenSans_500Medium,
+        OpenSans_600SemiBold,
+        OpenSans_700Bold,
+        OpenSans_800ExtraBold,
+        OpenSans_300Light_Italic,
+        OpenSans_400Regular_Italic,
+        OpenSans_500Medium_Italic,
+        OpenSans_600SemiBold_Italic,
+        OpenSans_700Bold_Italic,
+        OpenSans_800ExtraBold_Italic,
+      });
+
+      if (!fontsLoaded) {
+        return <Text>Loading..</Text>
+      } 
+
+
     return (
         <>
             <Header title={'EMI Calculator'} />
@@ -61,15 +97,14 @@ export default function EmiCalculator({ navigation }) {
             <View className="h-screen bg-white -z-10">
 
 
-
-                <View className="p-5 mb-2 mt-28 ">
+                <View className={` p-5`}>
 
                     <View className="mb-5">
-                        <Text>
+                        <Text style={{  fontFamily: 'OpenSans_400Regular' }}>
                             Total EMI
                         </Text>
 
-                        <Text className="text-xl font-bold text-blue-900">
+                        <Text className="text-xl  text-blue-900" style={{  fontFamily: 'OpenSans_700Bold' }}>
                             INR {emi} / Month
                         </Text>
                     </View>
@@ -77,11 +112,11 @@ export default function EmiCalculator({ navigation }) {
                     <View className="mb-4">
                         <View className="flex-row justify-between">
 
-                            <Text className="font-bold">
+                            <Text className="" style={{  fontFamily: 'OpenSans_700Bold' }}>
                                 Total Payable Amount
                             </Text>
 
-                            <Text className="font-bold">
+                            <Text className="" style={{  fontFamily: 'OpenSans_700Bold' }}>
                                 INR {totalPayable}
                             </Text>
                         </View>
@@ -97,12 +132,12 @@ export default function EmiCalculator({ navigation }) {
 
                                 </View>
 
-                                <Text className="">
+                                <Text className="" style={{  fontFamily: 'OpenSans_400Regular' }}>
                                     Principal Loan Amount
                                 </Text>
                             </View>
 
-                            <Text className="">
+                            <Text className="" style={{  fontFamily: 'OpenSans_400Regular' }}>
                                 {loanAmount}
                             </Text>
                         </View>
@@ -116,7 +151,7 @@ export default function EmiCalculator({ navigation }) {
 
                                 </View>
 
-                                <Text className="">
+                                <Text className="" style={{  fontFamily: 'OpenSans_400Regular' }}>
                                     Total Interest
                                 </Text>
                             </View>
@@ -130,26 +165,26 @@ export default function EmiCalculator({ navigation }) {
 
                 </View>
 
-                <View className="p-5 bg-blue-900 h-full rounded-2xl">
+                <View className="p-5 bg-blue-900 h-full rounded-3xl">
 
                     <View className="p-2 ">
 
                         <View className=" flex-row justify-between items-center mb-2">
 
-                            <Text className="text-white">
+                            <Text className="text-white" style={{  fontFamily: 'OpenSans_700Bold' }}>
                                 Loan Amount
                             </Text>
 
                             <View className="flex-row gap-2 w-[50%]">
 
-                                <View className="bg-white py-2 px-5  rounded-lg w-[50%]">
-                                    <Text className=" font-bold text-center">
+                                <View className="bg-white py-2 px-5  rounded w-[50%]">
+                                    <Text className=" font-bold text-center text-[12px]" style={{  fontFamily: 'OpenSans_700Bold' }}>
                                         ₹
                                     </Text>
                                 </View>
 
-                                <View className="bg-white p-2 rounded-lg w-[50%]">
-                                    <Text className=" font-bold text-center">
+                                <View className="bg-white p-2 rounded w-[50%]">
+                                    <Text className=" font-bold text-center text-[12px]" style={{  fontFamily: 'OpenSans_700Bold' }}>
                                         {loanAmount}
                                     </Text>
 
@@ -160,52 +195,52 @@ export default function EmiCalculator({ navigation }) {
 
                         <View>
 
-                            <View className="flex-row justify-between ">
-                                <Text className="text-white">
+                            <View className="flex-row justify-between">
+                                <Text className="text-white" style={{  fontFamily: 'OpenSans_400Regular' }}>
                                     From ₹ 50,000
                                 </Text>
-                                <Text className="text-white">
+                                <Text className="text-white"  style={{  fontFamily: 'OpenSans_400Regular' }}>
                                     To ₹ 5,00,000
                                 </Text>
                             </View>
 
-                            <View className="flex-row justify-center -mt-2">
+                            <View className="flex-row justify-center  -mt-2">
 
                                 <MultiSlider
                                     values={[loanAmount]}
                                     min={50000}
                                     max={500000}
                                     onValuesChange={handleLoanAmountChange}
-                                    sliderLength={330}
+                                    sliderLength={320}
                                     step={1000}
-
 
                                 />
 
                             </View>
 
+
                         </View>
 
-
                     </View>
+
 
                     <View className="p-2 ">
 
                         <View className=" flex-row justify-between items-center mb-2">
-                            <Text className="text-white">
+                            <Text className="text-white"  style={{  fontFamily: 'OpenSans_700Bold' }}>
                                 Tenure
                             </Text>
 
                             <View className="flex-row gap-2 w-[50%]">
 
-                                <View className="bg-white py-2 px-5 rounded-lg w-[50%]">
-                                    <Text className=" font-bold text-center">
+                                <View className="bg-white py-2 px-5 rounded w-[50%]">
+                                    <Text className=" font-bold text-center text-[12px]" style={{  fontFamily: 'OpenSans_700Bold' }}>
                                         Month
                                     </Text>
                                 </View>
 
-                                <View className="bg-white p-2 rounded-lg w-[50%]">
-                                    <Text className=" font-bold text-center">
+                                <View className="bg-white p-2 rounded w-[50%]">
+                                    <Text className=" font-bold text-center text-[12px]" style={{  fontFamily: 'OpenSans_700Bold' }}>
                                         {tenure}
                                     </Text>
 
@@ -217,10 +252,10 @@ export default function EmiCalculator({ navigation }) {
                         <View>
 
                             <View className="flex-row justify-between ">
-                                <Text className="text-white">
+                                <Text className="text-white" style={{  fontFamily: 'OpenSans_400Regular' }}>
                                     From 1 Month
                                 </Text>
-                                <Text className="text-white">
+                                <Text className="text-white" style={{  fontFamily: 'OpenSans_400Regular' }}>
                                     To 60 Month
                                 </Text>
                             </View>
@@ -233,7 +268,7 @@ export default function EmiCalculator({ navigation }) {
                                     min={1}
                                     max={60}
                                     onValuesChange={handleTenureChange}
-                                    sliderLength={330}
+                                    sliderLength={320}
                                     step={1}
                                 />
 
@@ -249,21 +284,21 @@ export default function EmiCalculator({ navigation }) {
 
                     <View className="p-2 ">
 
-                        <View className=" flex-row justify-between items-center mb-2">
-                            <Text className="text-white">
+                        <View className=" flex-row justify-between items-center mb-2" >
+                            <Text className="text-white" style={{  fontFamily: 'OpenSans_700Bold' }}>
                                 Interest Size
                             </Text>
 
                             <View className="flex-row gap-2 w-[50%]">
 
-                                <View className="bg-white py-2 px-5 rounded-lg w-[50%]">
-                                    <Text className=" font-bold text-center">
+                                <View className="bg-white py-2 px-5 rounded w-[50%]">
+                                    <Text className=" font-bold text-center text-[12px]" style={{  fontFamily: 'OpenSans_700Bold' }}>
                                         %
                                     </Text>
                                 </View>
 
-                                <View className="bg-white p-2 rounded-lg w-[50%]">
-                                    <Text className=" font-bold text-center">
+                                <View className="bg-white p-2 rounded w-[50%]">
+                                    <Text className=" font-bold text-center text-[12px]" style={{  fontFamily: 'OpenSans_700Bold' }}>
                                         {interestRate}
                                     </Text>
 
@@ -275,10 +310,10 @@ export default function EmiCalculator({ navigation }) {
                         <View>
 
                             <View className="flex-row justify-between ">
-                                <Text className="text-white">
+                                <Text className="text-white" style={{  fontFamily: 'OpenSans_400Regular' }}>
                                     From % 0
                                 </Text>
-                                <Text className="text-white">
+                                <Text className="text-white" style={{  fontFamily: 'OpenSans_400Regular' }}>
                                     To 20
                                 </Text>
                             </View>
@@ -291,7 +326,7 @@ export default function EmiCalculator({ navigation }) {
                                     min={0}
                                     max={20}
                                     onValuesChange={handleInterestRateChange}
-                                    sliderLength={330}
+                                    sliderLength={320}
                                     step={1}
                                 />
 

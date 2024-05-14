@@ -25,7 +25,7 @@ function App() {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <PaperProvider theme={theme}>
-         <StatusBar  translucent backgroundColor="#273283" barStyle={`light-content`} />
+         <StatusBar backgroundColor="#273283" barStyle={`light-content`} />
             <AppNavigator />
         </PaperProvider>
       </PersistGate>

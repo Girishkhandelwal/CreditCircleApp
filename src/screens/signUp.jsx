@@ -5,7 +5,27 @@ import axios from 'axios';
 import { TextInput } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserDetails } from '../globalStates/dataSlice';
-
+import {
+    useFonts,
+    Poppins_100Thin,
+    Poppins_100Thin_Italic,
+    Poppins_200ExtraLight,
+    Poppins_200ExtraLight_Italic,
+    Poppins_300Light,
+    Poppins_300Light_Italic,
+    Poppins_400Regular,
+    Poppins_400Regular_Italic,
+    Poppins_500Medium,
+    Poppins_500Medium_Italic,
+    Poppins_600SemiBold,
+    Poppins_600SemiBold_Italic,
+    Poppins_700Bold,
+    Poppins_700Bold_Italic,
+    Poppins_800ExtraBold,
+    Poppins_800ExtraBold_Italic,
+    Poppins_900Black,
+    Poppins_900Black_Italic,
+} from '@expo-google-fonts/poppins';
 
 
 export default function SignUp({ navigation }) {
@@ -188,6 +208,31 @@ export default function SignUp({ navigation }) {
         return panRegex.test(pan);
     };
 
+    let [fontsLoaded] = useFonts({
+        Poppins_100Thin,
+        Poppins_100Thin_Italic,
+        Poppins_200ExtraLight,
+        Poppins_200ExtraLight_Italic,
+        Poppins_300Light,
+        Poppins_300Light_Italic,
+        Poppins_400Regular,
+        Poppins_400Regular_Italic,
+        Poppins_500Medium,
+        Poppins_500Medium_Italic,
+        Poppins_600SemiBold,
+        Poppins_600SemiBold_Italic,
+        Poppins_700Bold,
+        Poppins_700Bold_Italic,
+        Poppins_800ExtraBold,
+        Poppins_800ExtraBold_Italic,
+        Poppins_900Black,
+        Poppins_900Black_Italic,
+    });
+
+    if (!fontsLoaded) {
+        return <Text>Loading...</Text>;
+    }
+
 
 
     return (
@@ -222,18 +267,18 @@ export default function SignUp({ navigation }) {
 
                             <View className="mb-5">
 
-                                <Text className="text-3xl  ">
-                                    Welcome!
+                                <Text className="text-4xl  " style={{ fontFamily: 'Poppins_300Light' }}>
+                                    Welcome
                                 </Text>
 
                             </View>
 
                             <View className="mb-5 px-2">
-                                <Text className="text-[15px] mb-1 text-gray-300">
+                                <Text className="text-[15px] mb-1 text-gray-400" style={{ fontFamily: 'Poppins_400Regular' }}>
                                     Sign Up to our platform
                                 </Text>
 
-                                <Text className="text-xl font-semibold text-blue-900">
+                                <Text className="text-xl font-semibold text-blue-900" style={{ fontFamily: 'Poppins_400Regular' }}>
                                     Lets Start With Your Details
                                 </Text>
                             </View>
@@ -362,7 +407,7 @@ export default function SignUp({ navigation }) {
                         <View>
 
                             <TouchableOpacity className="bg-orange-600  px-6 py-3 rounded-xl mb-5 w-[90%] flex-row justify-center m-auto" onPress={handelSignUp}>
-                                <Text className="text-white text-center text-lg font-bold">
+                                <Text className="text-white text-center text-lg font-bold" style={{ fontFamily: 'Poppins_400Regular' }}>
                                     Sign Up
                                 </Text>
                             </TouchableOpacity>
@@ -371,13 +416,13 @@ export default function SignUp({ navigation }) {
 
                         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
 
-                            <Text className="text-lg ">
+                            <Text className="text-lg text-gray-400" style={{ fontFamily: 'Poppins_400Regular' }}>
                                 Already have an account
                             </Text>
 
                             <TouchableOpacity onPress={() => navigation.navigate('SignIn')} className="mx-2">
-                                <Text className="text-lg font-bold text-orange-600 ">
-                                    Sign In
+                                <Text className="text-lg  text-orange-600 " style={{ fontFamily: 'Poppins_400Regular' }}>
+                                    Login
                                 </Text>
                             </TouchableOpacity>
 
