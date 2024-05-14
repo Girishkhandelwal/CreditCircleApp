@@ -54,6 +54,7 @@ web-build/
 *.p12
 *.key
 *.mobileprovision
+creditcircleapp-firebase-adminsdk-2m3mi-3352c4980c.json
 
 # Metro
 .metro-health-check*
